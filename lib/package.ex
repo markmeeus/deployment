@@ -97,12 +97,12 @@ defmodule Desktop.Deployment.Package do
 
     # Linux ->
     if os == MacOS do
-      # libs =
-      #  :filelib.wildcard('/Users/administrator/projects/wxWidgets/lib/libwx_*')
-      #  |> Enum.map(&List.to_string/1)
+       libs =
+        :filelib.wildcard('/usr/local/Cellar/wxwidgets/3.2.2.1_1/lib/libwx_*')
+        |> Enum.map(&List.to_string/1)
 
       # This copies links as links
-      # cmd!("cp", List.flatten(["-a", libs, priv(pkg)]))
+       cmd!("cp", List.flatten(["-a", libs, priv(pkg)]))
 
       (wildcard(rel, "**/*.dylib") ++ wildcard(rel, "**/*.so"))
       |> Enum.map(fn lib -> macos_find_deps(lib) end)
