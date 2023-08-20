@@ -103,6 +103,7 @@ defmodule Desktop.Deployment.Package do
 
       # This copies links as links
        cmd!("cp", List.flatten(["-a", libs, priv(pkg)]))
+       cmd!("cp", ["/usr/local/Cellar/libtiff/4.5.1/lib/libtiff.6.dylib", priv(pkg)])
 
       (wildcard(rel, "**/*.dylib") ++ wildcard(rel, "**/*.so"))
       |> Enum.map(fn lib -> macos_find_deps(lib) end)
